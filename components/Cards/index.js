@@ -20,4 +20,49 @@
 
 window.addEventListener("load", event => {
     console.log("The page has been loaded successfully!!");
+
+    const cardContainer = document.querySelector(".cards-container");
+
+    axios.get("https://lambda-times-backend.herokuapp.com/articles")
+
+    .then(response => {
+        console.log(response);
+        const articles = response.data.articles
+        const articlesKeys = Object.keys(articles)
+        console.log(articlesKeys)
+
+
+    })
+    .catch(error => {
+        console.log("The data was not returned properly", error);
+    })
 })
+
+const lambdaCards = (article) => {
+    const card = document.createElement("div");
+    const headline = document.createElement("div");
+    const author = document.createElement("div");
+    const imgBox = document.createElement("div");
+    const img = document.createElement("img");
+    const byWho = document.createElement("span");
+
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgBox);
+    imgBox.appendChild(img);
+    author.appendChild(byWho);
+
+    card.classList.add("card");
+    headline.classList.add("headline");
+    author.classList.add("author");
+    imgBox.classList.add("img-container");
+
+
+    headline.textContent = article.headline;
+    img.src = article.authorPhoto;
+    byWho.textContent = article.authorName;
+    
+
+
+    return card;
+}
