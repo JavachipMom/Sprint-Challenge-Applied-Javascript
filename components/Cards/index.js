@@ -31,6 +31,12 @@ window.addEventListener("load", event => {
         const articlesKeys = Object.keys(articles)
         console.log(articlesKeys)
 
+        articlesKeys.forEach(cardItems => {
+            const key = lambdaCards(cardItems)
+
+            cardContainer.appendChild(key)
+        })
+
 
     })
     .catch(error => {
@@ -61,8 +67,6 @@ const lambdaCards = (article) => {
     headline.textContent = article.headline;
     img.src = article.authorPhoto;
     byWho.textContent = article.authorName;
-    
-
 
     return card;
 }
