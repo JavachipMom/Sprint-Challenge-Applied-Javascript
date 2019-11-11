@@ -17,3 +17,7 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+window.addEventListener("load", event => {
+    console.log("The page has been loaded successfully!!");
+})
