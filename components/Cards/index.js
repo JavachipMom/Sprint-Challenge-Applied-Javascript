@@ -18,7 +18,7 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-window.addEventListener("load", event => {
+window.addEventListener("load", () => {
     console.log("The page has been loaded successfully!!");
 
     const cardContainer = document.querySelector(".cards-container");
@@ -26,16 +26,18 @@ window.addEventListener("load", event => {
     axios.get("https://lambda-times-backend.herokuapp.com/articles")
 
     .then(response => {
-        console.log(response);
-        const articles = response.data.articles
-        const articlesKeys = Object.keys(articles)
-        console.log(articlesKeys)
+        // console.log(response);
+        const articlesArray = response.data.articles
+        console.log(articlesArray)
+        const articlesKeys = Object.values(articlesArray)
+        console.log(Object.values(articlesKeys))
 
-        articlesKeys.forEach(cardItems => {
-            const key = lambdaCards(cardItems)
-
-            cardContainer.appendChild(key)
-        })
+        articlesKeys.forEach(keyData => {
+            keyData.forEach(stuff => {
+                cardContainer.appendChild(lambdaCards(stuff))
+                })
+            
+        })    
 
 
     })
@@ -70,3 +72,5 @@ const lambdaCards = (article) => {
 
     return card;
 }
+
+cardContainer();

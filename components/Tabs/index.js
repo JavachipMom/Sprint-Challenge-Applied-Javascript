@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
     axios.get("https://lambda-times-backend.herokuapp.com/topics")
 
     .then(response => {
-        console.log(response);
+        // console.log(response);
         const tabArray = response.data.topics
 
         tabArray.forEach(tab => {
